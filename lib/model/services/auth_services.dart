@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:programming_language_project/model/classes/user_model.dart';
+import '../classes/user_model.dart';
 
 class AuthServices {
   static String url = '';
