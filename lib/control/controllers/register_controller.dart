@@ -6,7 +6,7 @@ import '../../routs.dart';
 
 class RegisterController extends GetxController {
   var isLoding = false.obs;
-  final registerFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
   late TextEditingController nameController,
       emailController,
       passowrdController;
@@ -60,7 +60,7 @@ class RegisterController extends GetxController {
 
           registerFormKey.currentState!.save();
 
-          Get.toNamed(Routes.home);
+          Get.toNamed(Routes.products);
         } else {
           Get.snackbar('regiser', 'this is problem');
         }
