@@ -6,7 +6,7 @@ import '../../routs.dart';
 
 class LoginController extends GetxController {
   var isLoding = false.obs;
-  final loginFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   late TextEditingController nameController,
       emailController,
       passowrdController;
@@ -42,7 +42,7 @@ class LoginController extends GetxController {
     }
   }
 
-  doRegister() async {
+  doLogin() async {
     bool isValidate = loginFormKey.currentState!.validate();
     if (isValidate) {
       isLoding.value = true; //  isLoding(true);
@@ -56,9 +56,9 @@ class LoginController extends GetxController {
 
           loginFormKey.currentState!.save();
 
-          Get.toNamed(Routes.home);
+          Get.toNamed(Routes.products);
         } else {
-          Get.snackbar('regiser', 'this is problem');
+          Get.snackbar('login', 'this is problem');
         }
       } finally {
         isLoding(false);

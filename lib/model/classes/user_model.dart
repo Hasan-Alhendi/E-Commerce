@@ -1,12 +1,12 @@
 class UserModel {
-  User? user;
-  String? token;
+  late User user;
+  late String token;
 
   UserModel({required this.user, required this.token});
 
   Map<String, dynamic> toJson() {
     return {
-      'user': user!.toJson(),
+      'user': user.toJson(),
       'token': token,
     };
   }
