@@ -1,81 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:programming_language_project/control/controllers/product_search_controller.dart';
 
-import '../../routs.dart';
-
-class SearchWidget extends GetView<ProductSearchController> {
-  const SearchWidget(
-      {required this.id,
-      required this.imageUrl,
-      required this.title,
-      required this.price,
-      required this.onChanged,
-      Key? key})
-      : super(key: key);
+class TextFieldSearch extends StatelessWidget {
+  final TextEditingController textEditingController;
   final ValueChanged<String> onChanged;
-  final imageUrl;
-  final title;
-  final price;
-  final id;
+  final VoidCallback? callBackClear, callBackPrefix, callBackSearch;
+  final isPrefixIconVisible;
+  final String hintText;
+
+  TextFieldSearch(
+      {required this.textEditingController,
+      required this.onChanged,
+      this.callBackClear,
+      this.isPrefixIconVisible = false,
+      this.callBackSearch,
+      this.callBackPrefix,
+      this.hintText = 'Search'});
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 42,
-          margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.white,
-            border: Border.all(color: Colors.black26),
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: TextField(
-            controller: controller.texController.value,
-            decoration: const InputDecoration(
-              icon: Icon(Icons.search, color: Colors.amber),
-              hintText: 'widget.hintText',
-              border: InputBorder.none,
-            ),
+    return Container(
+        height: 40,
+        margin: const EdgeInsets.all(10),
+        child: TextField(
+            controller: textEditingController,
             onChanged: onChanged,
-          ),
-        ),
-        Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Get.toNamed(Routes.productDetail, arguments: id as String);
-              },
-              child: ListTile(
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                subtitle: Text(
-                  '$price s.p',
-                  style: const TextStyle(
+            textInputAction: TextInputAction.search,
+            textCapitalization: TextCapitalization.words,
+            style: const TextStyle(fontSize: 15),
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                isCollapsed: true,
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 12.0, horizontal: 12.0),
+                prefixIcon: isPrefixIconVisible
+                    ? IconButton(
+                        icon: const Icon(Icons.search,
+                            size: 20, color: Colors.blue),
+                        onPressed: callBackPrefix)
+                    : null,
+                enabledBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(color: Colors.black)),
+                focusedBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(color: Colors.blue)),
+                filled: true,
+                hintStyle: const TextStyle(
                     fontSize: 15,
-                  ),
-                ),
-                title: Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 25,
-                  ),
-                ),
-                leading: CircleAvatar(
-                  backgroundColor: Colors.blueAccent,
-                  backgroundImage: NetworkImage(
-                    imageUrl,
-                  ),
-                ),
-              ),
-            ),
-            const Divider(
-              color: Colors.grey,
-            ),
-          ],
-        )
-      ],
-    );
+                    color: Colors.black54,
+                    textBaseline: TextBaseline.alphabetic),
+                hintText: hintText,
+                fillColor: Colors.grey.withOpacity(0.1))));
   }
 }
