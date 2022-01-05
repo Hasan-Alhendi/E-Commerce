@@ -125,7 +125,6 @@ class RegisterScreen extends GetView<RegisterController> {
                       child: MaterialButton(
                         onPressed: () {
                           controller.doRegister();
-                          //   Get.offAndToNamed(Routes.home);
                         },
                         child: const Text(
                           " Sign up",

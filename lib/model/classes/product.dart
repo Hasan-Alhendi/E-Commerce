@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'package:get/get.dart';
+
 class Product {
   String? id;
   String? creatorId;
@@ -12,7 +14,7 @@ class Product {
   int? price;
   int? countView;
 
-  //bool isLike;
+  bool? isFavorate;
 
   Product({
     required this.id,
@@ -24,9 +26,12 @@ class Product {
     required this.commInfo,
     required this.mount,
     required this.price,
-    required this.countView,
-    //this.isLike = false,
-  });
+    this.countView = 0,
+    this.isFavorate = false,
+  }) {
+    //this.setQuantity(quantity);
+    //this.setIsFavourite(isFavorate!);
+  }
 
   Map<String, dynamic> toJson() {
     return {
@@ -40,7 +45,7 @@ class Product {
       'mount': mount,
       'price': price,
       'countView': countView,
-      //'isLike': isLike,
+      'isFavorate': isFavorate,
     };
   }
 
@@ -56,10 +61,14 @@ class Product {
     price = json['price'];
     countView = json['countView'];
     //print('id is: $id - price is: $price');
-    //isLike: json['isLike'];
+    isFavorate = json['isFavorate'];
   }
 
-  // String toJson() => json.encode(toMap());
+  RxBool isFavourite = false.obs;
 
-  //factory Product.fromJson(String source) => Product.fromMap(json.decode(source));
+  setIsFavourite(bool value) => isFavourite.value = value;
+
+  RxInt cnt = 0.obs;
+
+  setcnt(int value) => cnt.value = value;
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
 import '../../control/controllers/product_add_controller.dart';
 
 import 'imagepicker.dart';
@@ -32,13 +34,6 @@ class ProductAddItem extends GetView<ProductAddController> {
                 height: 25,
                 width: 0,
               ),
-              /* GestureDetector(
-                child: CircleAvatar(
-                  radius: 50,
-                  child: Image.network(
-                      'https://freepngimg.com/thumb/shoes/28530-3-nike-shoes-transparent-thumb.png'),
-                ),
-              ), */
               UserImagePicker(),
               const SizedBox(
                 height: 25,
@@ -60,10 +55,11 @@ class ProductAddItem extends GetView<ProductAddController> {
               TextFormField(
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 keyboardType: TextInputType.datetime,
-                // controller: controller.emailController,
-                //  onSaved: (value) => controller.email = value!,
-                //  validator: (emailInput) =>
-                //    controller.validateEmail(emailInput!),
+                controller: controller.selectedDateController,
+                // onSaved: (value) => controller.selectedDate = value!,
+                onTap: () {
+                  _selectDate(context);
+                },
                 decoration: const InputDecoration(
                   labelText: 'Expire Date',
                   border: OutlineInputBorder(),
@@ -77,8 +73,6 @@ class ProductAddItem extends GetView<ProductAddController> {
                 keyboardType: TextInputType.phone,
                 controller: controller.phoneController,
                 onSaved: (value) => controller.phone = value!,
-                //  validator: (emailInput) =>
-                //    controller.validateEmail(emailInput!),
                 decoration: const InputDecoration(
                   labelText: 'Phone',
                   border: OutlineInputBorder(),
@@ -92,8 +86,6 @@ class ProductAddItem extends GetView<ProductAddController> {
                 keyboardType: TextInputType.url,
                 controller: controller.facebookController,
                 onSaved: (value) => controller.facebook = value!,
-                //  validator: (emailInput) =>
-                //    controller.validateEmail(emailInput!),
                 decoration: const InputDecoration(
                   labelText: 'Facebook',
                   border: OutlineInputBorder(),
@@ -107,8 +99,6 @@ class ProductAddItem extends GetView<ProductAddController> {
                 keyboardType: TextInputType.number,
                 controller: controller.mountController,
                 onSaved: (value) => controller.mount = int.parse(value!),
-                //  validator: (emailInput) =>
-                //    controller.validateEmail(emailInput!),
                 decoration: const InputDecoration(
                   labelText: 'Mount',
                   border: OutlineInputBorder(),
@@ -136,9 +126,9 @@ class ProductAddItem extends GetView<ProductAddController> {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    radioMethod('Electrical'),
-                    radioMethod('Mechanized'),
-                    radioMethod('personal')
+                    radioMethod('Foods'),
+                    radioMethod('Drinks'),
+                    radioMethod('Medicines')
                   ],
                 ),
               ),
@@ -166,7 +156,6 @@ class ProductAddItem extends GetView<ProductAddController> {
   } */
 
   Row radioMethod(String value) {
-    // String _radioValue = 'Electrical';
     return Row(
       children: [
         Obx(
@@ -180,5 +169,28 @@ class ProductAddItem extends GetView<ProductAddController> {
         Text(value),
       ],
     );
+  }
+
+  _selectDate(BuildContext context) async {
+    DateTime? newSelectedDate = await showDatePicker(
+      context: context,
+      // ignore: prefer_if_null_operators, unnecessary_null_comparison
+      initialDate: controller.selectedDate != null
+          ? controller.selectedDate
+          : DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2040),
+    );
+
+    if (newSelectedDate != null) {
+      controller.selectedDate = newSelectedDate;
+      controller.selectedDateController
+        ..text = DateFormat.yMMMd().format(controller.selectedDate)
+        ..selection = TextSelection.fromPosition(
+          TextPosition(
+              offset: controller.selectedDateController.text.length,
+              affinity: TextAffinity.upstream),
+        );
+    }
   }
 }

@@ -5,16 +5,18 @@ import 'package:get/get.dart';
 
 class ProductAddController extends GetxController {
   final GlobalKey<FormState> addProductFormKey = GlobalKey<FormState>();
-  var radioValue = 'Electrical'.obs;
+  var radioValue = 'Foods'.obs;
   var imagePicked = File('').obs;
-  var selectedDate = DateTime.now().obs;
+  var selectedDate = DateTime.now();
   late TextEditingController titleController,
       phoneController,
       facebookController,
       mountController,
-      priceController;
+      priceController,
+      selectedDateController;
   String title = '', facebook = '', phone = '';
   int mount = 0, price = 0;
+  // DateTime selectedDateTime = DateTime.now();
   @override
   void onInit() {
     titleController = TextEditingController();
@@ -22,6 +24,7 @@ class ProductAddController extends GetxController {
     facebookController = TextEditingController();
     mountController = TextEditingController();
     priceController = TextEditingController();
+    selectedDateController = TextEditingController();
     super.onInit();
   }
 
@@ -32,6 +35,7 @@ class ProductAddController extends GetxController {
     facebookController.dispose();
     mountController.dispose();
     priceController.dispose();
+    selectedDateController.dispose();
     super.dispose();
   }
 }

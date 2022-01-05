@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'E-Commerce',
-      initialRoute: Routes.bottombar /* Routes.products*/,
+      initialRoute: Routes.login,
       getPages: Routes.routes,
     );
   }
