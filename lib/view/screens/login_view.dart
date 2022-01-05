@@ -108,7 +108,8 @@ class LoginView extends GetView<LoginController> {
                       color: Colors.green,
                       child: MaterialButton(
                         onPressed: () {
-                          controller.doLogin();
+                          //controller.doLogin();
+                          Get.offAndToNamed(Routes.bottombar);
                         },
                         child: const Text(
                           " Log in",

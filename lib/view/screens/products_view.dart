@@ -32,6 +32,8 @@ class ProductsView extends GetView<ProductsController> {
                 id: controller.productList[index].id,
                 imageUrl: controller.productList[index].imageUrl,
                 title: controller.productList[index].title,
+                product: controller.productList[index],
+                viewCount: controller.productList[index].countView,
               ),
             );
           }

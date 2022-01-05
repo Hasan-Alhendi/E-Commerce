@@ -56,7 +56,7 @@ class LoginController extends GetxController {
 
           loginFormKey.currentState!.save();
 
-          Get.toNamed(Routes.products);
+          Get.toNamed(Routes.bottombar);
         } else {
           Get.snackbar('login', 'this is problem');
         }

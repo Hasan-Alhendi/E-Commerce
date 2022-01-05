@@ -40,7 +40,8 @@ class ProductsServices {
         ));
       }); */
     Products.set_items(loadedProducts);
-    print(loadedProducts);
+    // Product.setIsFavourite(loadedProducts[0].isFavorate!);
+    // print(loadedProducts[0].isFavorate);
     return loadedProducts;
   }
 }
@@ -83,8 +84,10 @@ class ProductsServices {
 Future<void> addProduct(Product product) async {
   const url = '';
   try {
-    final response = await http.post(Uri.parse(url),
-        body: json.encode({
+    final response = await http.post(
+      Uri.parse(url),
+      body: json.encode(
+        {
           'title': product.title,
           'imageUrl': product.imageUrl,
           'expireDate': product.expireDate,
@@ -93,7 +96,9 @@ Future<void> addProduct(Product product) async {
           'mount': product.mount,
           'price': product.price,
           'creatorId': Products.userId,
-        }));
+        },
+      ),
+    );
 
     final newProduct = Product(
       id: json.decode(response.body)['name'],
@@ -144,7 +149,6 @@ Future<void> deleteProduct(String id) async {
   //--------------------------------------------
   Products.items.removeAt(existingProductIndex);
   //--------------------------------------------
-  // using optmistic updating pattern
   final response = await http.delete(Uri.parse(url));
   if (response.statusCode >= 400) {
     Products.set_item(existingProductIndex, existingProduct);

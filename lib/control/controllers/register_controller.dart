@@ -60,7 +60,7 @@ class RegisterController extends GetxController {
 
           registerFormKey.currentState!.save();
 
-          Get.toNamed(Routes.products);
+          Get.toNamed(Routes.bottombar);
         } else {
           Get.snackbar('regiser', 'this is problem');
         }
