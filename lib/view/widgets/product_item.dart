@@ -74,5 +74,6 @@ class ProductItem extends GetView<ProductsController> {
         ),
       ),
     );
+    //jijj
   }
 }
