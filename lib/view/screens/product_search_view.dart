@@ -1,9 +1,9 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:programming_language_project/control/controllers/product_search_controller.dart';
 import 'package:programming_language_project/control/controllers/products_controller.dart';
-import 'package:programming_language_project/model/classes/product.dart';
-import 'package:programming_language_project/model/classes/products.dart';
 import 'package:programming_language_project/view/widgets/product_item_search.dart';
 import 'package:programming_language_project/view/widgets/search_widget.dart';
 
@@ -32,6 +32,7 @@ class ProductSearchView extends GetView<ProductSearchController> {
                 imageUrl: controller.productList[index].imageUrl,
                 price: controller.productList[index].price,
                 title: controller.productList[index].title,
+                product: controller.productList[index],
               ),
             ),
           ),

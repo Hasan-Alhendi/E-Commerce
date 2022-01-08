@@ -43,12 +43,18 @@ class ProductItem extends GetView<ProductsController> {
         footer: GridTileBar(
           backgroundColor: Colors.black87,
           leading: IconButton(
-              onPressed: () => controller.favourite(product),
-              icon: Obx(() => Icon(
-                  product.isFavourite.value == true
-                      ? Icons.thumb_up
-                      : Icons.thumb_up_alt_outlined,
-                  color: Colors.white))),
+            onPressed: () => controller.favourite(product),
+            icon: Obx(
+              () => Icon(
+                product.isFavourite.value == true
+                    ? Icons.thumb_up
+                    : Icons.thumb_up_alt_outlined,
+                color: product.isFavourite.value == true
+                    ? Colors.blue
+                    : Colors.white,
+              ),
+            ),
+          ),
           title: Text(
             title,
             textAlign: TextAlign.center,

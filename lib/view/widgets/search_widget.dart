@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 class TextFieldSearch extends StatelessWidget {
@@ -7,7 +9,7 @@ class TextFieldSearch extends StatelessWidget {
   final isPrefixIconVisible;
   final String hintText;
 
-  TextFieldSearch(
+  const TextFieldSearch(
       {required this.textEditingController,
       required this.onChanged,
       this.callBackClear,

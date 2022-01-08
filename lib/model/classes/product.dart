@@ -10,6 +10,7 @@ class Product {
   DateTime? expireDate;
   String? type;
   String? commInfo;
+  String? faceAccount;
   int? mount;
   int? price;
   int? countView;
@@ -24,6 +25,7 @@ class Product {
     required this.expireDate,
     required this.type,
     required this.commInfo,
+    required this.faceAccount,
     required this.mount,
     required this.price,
     this.countView = 0,
@@ -42,6 +44,7 @@ class Product {
       'expireDate': expireDate!.millisecondsSinceEpoch,
       'type': type,
       'commInfo': commInfo,
+      'faceAccount': faceAccount,
       'mount': mount,
       'price': price,
       'countView': countView,
@@ -57,6 +60,7 @@ class Product {
     expireDate = DateTime.parse(json['expireDate']);
     type = json['type'];
     commInfo = json['commInfo'];
+    faceAccount = json['faceAccount'];
     mount = json['mount'];
     price = json['price'];
     countView = json['countView'];

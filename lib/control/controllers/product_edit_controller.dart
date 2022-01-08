@@ -31,5 +31,32 @@ class ProductEditController extends GetxController {
     } finally {
       isLoading(false);
     }
+
+    void deleteProduct(String id) {
+      // const url = '';
+      final existingProductIndex =
+          Products.items.indexWhere((prod) => prod.id == id);
+      //Product? existingProduct = Products.items[existingProductIndex];
+      //--------------------------------------------
+      Products.items.removeAt(existingProductIndex);
+      update();
+      //--------------------------------------------
+      /* final response = await http.delete(Uri.parse(url));
+  if (response.statusCode >= 400) {
+    Products.set_item(existingProductIndex, existingProduct);
+    throw HttpException('Could not delete product.');
+  }
+  existingProduct = null; */
+    }
+  }
+
+  int counter = 0;
+  void deleteddd(String id) {
+    final existingProductIndex =
+        Products.items.indexWhere((prod) => prod.id == id);
+    Products.items.removeAt(existingProductIndex);
+    print(existingProductIndex);
+    print(Products.items);
+    //update();
   }
 }

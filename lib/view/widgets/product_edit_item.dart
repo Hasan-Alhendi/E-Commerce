@@ -2,20 +2,22 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:programming_language_project/control/controllers/product_edit_controller.dart';
 
-import '../../routs.dart';
-
-class ProductEditItem extends StatelessWidget {
-  const ProductEditItem(
-      {Key? key,
-      required this.imageUrl,
-      required this.title,
-      required this.price})
-      : super(key: key);
+class ProductEditItem extends GetView<ProductEditController> {
+  const ProductEditItem({
+    Key? key,
+    required this.imageUrl,
+    required this.title,
+    required this.price,
+    required this.id,
+  }) : super(key: key);
 
   final imageUrl;
   final title;
   final price;
+  final id;
+  //ProductEditController dd=Get.find<ProductEditController>();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -36,7 +38,9 @@ class ProductEditItem extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.deleteddd(id);
+                  },
                   icon: const Icon(
                     Icons.delete,
                     // color: Colors.white,

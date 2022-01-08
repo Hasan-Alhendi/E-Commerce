@@ -15,29 +15,41 @@ class ProductsView extends GetView<ProductsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.green,
       extendBody: true,
-      body: Obx(
-        () {
-          if (controller.isLoading.value) {
-            return const Center(child: CircularProgressIndicator());
-          } else {
-            return GridView.builder(
-              itemCount: controller.productList.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 3 / 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10),
-              itemBuilder: (BuildContext context, int index) => ProductItem(
-                id: controller.productList[index].id,
-                imageUrl: controller.productList[index].imageUrl,
-                title: controller.productList[index].title,
-                product: controller.productList[index],
-                viewCount: controller.productList[index].countView,
-              ),
-            );
-          }
-        },
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 5,
+          ),
+          Obx(
+            () {
+              if (controller.isLoading.value) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                return Expanded(
+                  child: GridView.builder(
+                    itemCount: controller.productList.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 3 / 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10),
+                    itemBuilder: (BuildContext context, int index) =>
+                        ProductItem(
+                      id: controller.productList[index].id,
+                      imageUrl: controller.productList[index].imageUrl,
+                      title: controller.productList[index].title,
+                      product: controller.productList[index],
+                      viewCount: controller.productList[index].countView,
+                    ),
+                  ),
+                );
+              }
+            },
+          ),
+        ],
       ),
 
       /*Expanded(

@@ -5,6 +5,7 @@ import '../screens/product_add_view.dart';
 import '../screens/product_edit_view.dart';
 import '../screens/product_search_view.dart';
 import '../screens/products_view.dart';
+import 'drawer.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _BottomBarState extends State<BottomBar> {
     const ProductEditView(),
     const ProductAddView(),
     ProductSearchView(),
-    const ProductAddView(),
+    // const ProductAddView(),
   ];
 
   final items = [
@@ -28,7 +29,7 @@ class _BottomBarState extends State<BottomBar> {
     const Icon(Icons.edit, size: 30),
     const Icon(Icons.add, size: 30),
     const Icon(Icons.search, size: 30),
-    const Icon(Icons.perm_identity, size: 30),
+    // const Icon(Icons.perm_identity, size: 30),
   ];
 
   int _page = 0;
@@ -38,9 +39,13 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: const MyDrawers(),
         extendBody: true,
         appBar: AppBar(
-          title: const Text(''),
+          centerTitle: true,
+          title: const Text(
+            'E-Commerce',
+          ),
         ),
         body: screens[_page],
         bottomNavigationBar: Theme(

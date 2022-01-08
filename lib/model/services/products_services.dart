@@ -41,7 +41,7 @@ class ProductsServices {
       }); */
     Products.set_items(loadedProducts);
     // Product.setIsFavourite(loadedProducts[0].isFavorate!);
-    // print(loadedProducts[0].isFavorate);
+    print(loadedProducts[0].commInfo);
     return loadedProducts;
   }
 }
@@ -106,6 +106,7 @@ Future<void> addProduct(Product product) async {
       price: product.price,
       imageUrl: product.imageUrl,
       commInfo: product.commInfo,
+      faceAccount: product.faceAccount,
       expireDate: product.expireDate,
       mount: product.mount,
       type: product.type,
