@@ -24,6 +24,7 @@ class ProductEditView extends GetView<ProductEditController> {
                 imageUrl: controller.productList[index].imageUrl,
                 title: controller.productList[index].title,
                 price: controller.productList[index].price,
+                id: controller.productList[index].id,
               ),
             );
           }

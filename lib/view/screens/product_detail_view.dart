@@ -17,10 +17,10 @@ class ProductDetailView extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            expandedHeight: 300,
-            pinned: true,
+            expandedHeight: 400,
+            //pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(loadedProduct.title!),
+              // title: Text(loadedProduct.title!),
               background: Hero(
                 tag: loadedProduct.id!,
                 child: Image.network(
@@ -33,51 +33,109 @@ class ProductDetailView extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate([
               const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    loadedProduct.title!,
+                    style: const TextStyle(
+                      //color: Colors.grey,
+                      fontSize: 26,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    '${loadedProduct.price} S.P',
+                    style: const TextStyle(
+                      //color: Colors.grey,
+                      fontSize: 20,
+                    ),
+                    //textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Icon(
+                    Icons.phone,
+                    size: 30,
+                    color: Colors.green,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    '${loadedProduct.commInfo}',
+                    style: const TextStyle(
+                      //color: Colors.grey,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Icon(
+                    Icons.facebook,
+                    size: 30,
+                    color: Colors.lightBlue[400],
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    '${loadedProduct.faceAccount}',
+                    style: const TextStyle(
+                      //color: Colors.grey,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Icon(
+                    Icons.date_range_outlined,
+                    size: 30,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    formatter.format(loadedProduct.expireDate!),
+                    style: const TextStyle(
+                      //color: Colors.grey,
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               Text(
-                '${loadedProduct.price}S.P',
+                '   Number of pieces left: ${loadedProduct.mount}',
                 style: const TextStyle(
-                  color: Colors.grey,
+                  // color: Colors.grey,
                   fontSize: 20,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 10),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  formatter.format(loadedProduct.expireDate!),
-                  textAlign: TextAlign.center,
-                  softWrap: true,
-                ),
-              ),
-              SizedBox(
-                child: Text(
-                  '${loadedProduct.mount}',
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 20,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(
-                child: Text(
-                  '${loadedProduct.mount}',
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 20,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(
-                child: Text(
-                  '${loadedProduct.commInfo}',
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 20,
-                  ),
-                  textAlign: TextAlign.center,
                 ),
               ),
             ]),
